@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFix — Central de OS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>TechFix — Central de Ordens de Serviço</h1>
+
+        <!-- Formulário de Registo -->
+        <form id="formOS" class="form-os">
+            <h2>Nova Ordem de Serviço</h2>
+            
+            <div class="field">
+                <label for="cliente">Cliente:</label>
+                <input type="text" id="cliente" required placeholder="Nome do cliente">
+            </div>
+
+            <div class="field">
+                <label for="equipamento">Equipamento:</label>
+                <input type="text" id="equipamento" required placeholder="Ex: Computador Desktop Dell">
+            </div>
+
+            <div class="field">
+                <label for="tecnico">Técnico / Aluno Responsável:</label>
+                <input type="text" id="tecnico" required placeholder="Nome do responsável pelo conserto">
+            </div>
+
+            <div class="field">
+                <label for="descricao">Descrição do Problema:</label>
+                <textarea id="descricao" required placeholder="Descreva a avaria ou serviço"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="valorEstimado">Valor Estimado (R$):</label>
+                <input type="number" id="valorEstimado" step="0.01" required placeholder="0.00">
+            </div>
+
+            <button type="submit" id="btnSalvar">Registar OS</button>
+        </form>
+
+        <!-- Secção de Filtros e Pesquisa em Tempo Real -->
+        <section class="lista-container">
+            <h2>Ordens de Serviço Registadas</h2>
+
+            <div class="painel-controles">
+                <div class="field busca-field">
+                    <input type="text" id="inputBusca" placeholder="Pesquisar por Cliente, Equipamento, Técnico ou ID...">
+                </div>
+                
+                <div class="filtros-status">
+                    <button type="button" class="btn-filtro active" data-filtro="todas">Todas</button>
+                    <button type="button" class="btn-filtro" data-filtro="pendentes">Pendentes</button>
+                    <button type="button" class="btn-filtro" data-filtro="concluidas">Concluídas</button>
+                </div>
+            </div>
+
+            <!-- Contentor dos Cards -->
+            <div id="listaOS" class="lista-os"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

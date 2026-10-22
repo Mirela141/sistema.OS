@@ -1,0 +1,266 @@
+/* ==========================================================================
+   TechFix — Dark Neon (Com Pesquisa, Filtros e Indicadores)
+   ========================================================================== */
+
+   :root {
+    --bg-dark: #09090b;
+    --bg-card: #12121a;
+    --bg-input: #1a1a26;
+    
+    --purple-main: #a855f7;
+    --purple-hover: #9333ea;
+    --purple-light: #c084fc;
+    --purple-dark: #581c87;
+    --purple-glow: rgba(168, 85, 247, 0.4);
+    
+    --border-subtle: rgba(168, 85, 247, 0.2);
+    --text-white: #f8fafc;
+    --text-muted: #94a3b8;
+
+    --radius-card: 18px;
+    --radius-input: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(88, 28, 135, 0.15) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-white);
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, #ffffff 30%, var(--purple-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--purple-light);
+}
+
+.form-os {
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    margin-bottom: 40px;
+}
+
+.field {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Regra dos 44px de Altura Mínima Mantida[cite: 1] */
+input, textarea, button {
+    min-height: 44px; /* Requisito do enunciado[cite: 1] */
+    padding: 12px 16px;
+    border-radius: var(--radius-input);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    width: 100%;
+}
+
+input, textarea {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-white);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--purple-main);
+    box-shadow: 0 0 0 3px var(--purple-glow);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+button {
+    background: linear-gradient(135deg, var(--purple-main), var(--purple-dark));
+    color: #ffffff;
+    font-weight: 700;
+    border: 1px solid var(--purple-light);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: linear-gradient(135deg, var(--purple-hover), var(--purple-main));
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px var(--purple-glow);
+}
+
+/* Painel de Controles (Pesquisa e Filtros) */
+.painel-controles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .painel-controles {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .busca-field {
+        flex: 1;
+        margin-bottom: 0;
+    }
+}
+
+.filtros-status {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-filtro {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 0 18px;
+}
+
+.btn-filtro.active {
+    background: var(--purple-main);
+    color: #ffffff;
+    border-color: var(--purple-light);
+    box-shadow: 0 0 15px var(--purple-glow);
+}
+
+/* Cards da Lista */
+.lista-os {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.os-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    border: 1px solid var(--border-subtle);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+}
+
+.os-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-main), var(--purple-light));
+}
+
+.os-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--purple-main);
+    box-shadow: 0 0 20px var(--purple-glow);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    color: var(--text-white);
+}
+
+.badge-status {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(168, 85, 247, 0.2);
+    color: var(--purple-light);
+    border: 1px solid var(--purple-main);
+}
+
+.os-card.concluida .badge-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border-color: #10b981;
+}
+
+.card-divisor {
+    border: 0;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    margin: 12px 0;
+}
+
+.os-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.os-card p strong {
+    color: var(--text-white);
+}
+
+.btn-concluir {
+    background: transparent;
+    border: 1px solid var(--purple-main);
+    color: var(--purple-light);
+    margin-top: 14px;
+}
+
+.btn-concluir:hover {
+    background: var(--purple-main);
+    color: #ffffff;
+}
+
+.lista-os > p {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px;
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    border: 1px dashed var(--border-subtle);
+}
